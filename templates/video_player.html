@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+
+{% block container %}
+
+    {% for vid in video[:1] %}
+
+
+
+
+
+
+
+   <!-- ===================================================== -->
+   <!-- 
+    <script src="/static/moovie.js/js/moovie.js"></script>
+    <link rel="stylesheet" href="/static/moovie.js/css/moovie.css">
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+       var demo = new Moovie({
+         selector: "#example",
+         dimensions: {
+              width: "100%"
+         },
+         controls : {
+            playtime : true,
+            mute : true,
+            volume : true,
+            subtitles : true,
+            config : true,
+            fullscreen : true,
+            submenuCaptions : true,
+            submenuOffset : true,
+            submenuSpeed : true,
+            allowLocalSubtitles : true  
+        },
+       });
+    });
+    </script>
+
+    <video id="example" poster="/static/videos/{{ vid['thumbnail'].split('/')[-1] }}">
+      <source src="/static/videos/{{ vid['name'].split('/')[-1] }}" type="video/mp4">
+    </video>
+    -->
+
+
+
+
+    <video id="plyr-video" class="m-auto" poster="/static/videos/{{ vid['thumbnail'].split('/')[-1] }}" controls>
+        <source src="/static/videos/{{ vid['name'].split('/')[-1] }}" type="video/mp4">
+    </video>
+   
+
+
+
+
+    <link rel="stylesheet" href="/static/plyr_full/node_modules/plyr/dist/plyr.css"> <!-- href="https://cdn.plyr.io/2.0.15/plyr.css"> -->
+    <script src="/static/plyr_full/node_modules/plyr/dist/plyr.js"></script> <!-- src="https://cdn.plyr.io/2.0.15/plyr.js"></script> -->
+    
+    
+    <!-- <script>plyr.setup("#plyr-video");</script> -->
+    <!-- <script> -->
+    <!--  const player = new Plyr('#plyr-video'); --> 
+    <!-- </script> -->
+    <script>
+          document.addEventListener('DOMContentLoaded', () => {
+             const controls = [
+              'play-large', // The large play button in the center
+              'rewind', // Rewind by the seek time (default 10 seconds)
+              'play', // Play/pause playback
+              'fast-forward', // Fast forward by the seek time (default 10 seconds)
+              'progress', // The progress bar and scrubber for playback and buffering
+              'current-time', // The current time of playback
+              'duration', // The full duration of the media
+              'mute', // Toggle mute
+              'volume', // Volume control
+              'captions', // Toggle captions
+              'settings', // Settings menu
+              'pip', // Picture-in-picture (currently Safari only)
+              'airplay', // Airplay (currently Safari only)
+              'fullscreen' // Toggle fullscreen
+          ];
+          const player = Plyr.setup('#plyr-video', { controls });
+      });
+    </script>
+
+
+
+    <div class="card text-center mt-3 mb-3"> <!--  style="width: 18rem;"> -->
+      <div class="card-body">
+        <h5 class="card-title">{{ vid['d_name'] }}</h5>
+        <p class="card-text">{{ vid['d_info'] }}</p>
+        <a href="/static/videos/{{ vid['name'].split('/')[-1] }}" class="btn btn-primary">Download</a>
+        <br>
+        <br>
+        <!-- <a href="/set_seen/{{ vid['name'].split('/')[-1] }}" class="btn btn-success">Saw</a> -->
+        <!-- <a href="/set_unseen/{{ vid['name'].split('/')[-1] }}" class="btn btn-danger">Didnt Saw</a> -->
+        <script>
+        function saw() {
+          fetch("/set_seen/{{ vid['name'].split('/')[-1] }}")
+        }
+        function didntsaw() {
+          fetch("/set_unseen/{{ vid['name'].split('/')[-1] }}")
+        }
+
+        </script>
+        <a onclick='saw()' class="btn btn-success">Saw</a>
+        <a onclick='didntsaw()' class="btn btn-danger">Didnt Saw</a>
+
+      </div>
+    </div>
+
+
+
+    {% endfor %} 
+{% endblock %}

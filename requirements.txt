@@ -1,0 +1,4 @@
+flask
+flask_basicauth
+python-opencv
+requests

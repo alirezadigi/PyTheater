@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+
+{% block container %}
+
+    {% for vid in video[:1] %}
+
+    <script src="/static/jquery/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+    <script src="/static/mediaelement/build/mediaelement-and-player.min.js"></script>
+    <link rel="stylesheet" href="/static/mediaelement/build/mediaelementplayer.min.css" />
+    <script src="/static/node_modules/mediaelement-plugins/dist/skip-back/skip-back.js"></script>
+    <script src="/static/node_modules/mediaelement-plugins/dist/skip-back/skip-back-i18n.js"></script>
+    <link rel="stylesheet" href="/static/node_modules/mediaelement-plugins/dist/skip-back/skip-back.css" />
+    <!-- 
+    <script>
+    jQuery(document).ready(function($) {
+        $('#player1').mediaelementplayer();
+    });
+    </script>
+    -->
+    <script>
+    jQuery(document).ready(function($) {
+        $('#player1').mediaelementplayer({ features: ['playpause','progress','current','duration','tracks','volume','fullscreen','skipback'],skipBackInterval:10,
+        defaultSeekBackwardInterval : function(media) {return (10);}   ,defaultSeekForwardInterval : function(media) {return (10);} });
+    });
+    </script>
+
+    <video id="player1" class="m-auto"> <!--  poster="/static/videos/{{ vid['thumbnail'].split('/')[-1] }}">  class="mejs__player"> -->
+       <source src="/static/videos/{{ vid['name'].split('/')[-1] }}" type="video/mp4"></source>
+    </video>
+
+
+
+    <!-- 
+
+
+
+    <link href="/static/video.js/node_modules/video.js/dist/video-js.min.css" rel="stylesheet">
+    <script src="/static/video.js/node_modules/video.js/dist/video.min.js"></script>
+
+    <script src="/static/video.js/node_modules/videojs-seek-buttons/dist/videojs-seek-buttons.min.js"></script>
+    <link rel="stylesheet" href="/static/video.js/node_modules/videojs-seek-buttons/dist/videojs-seek-buttons.css">
+
+    <video
+        id="my-video"
+        class="video-js"
+        controls
+        preload="auto"
+        poster="/static/videos/{{ vid['thumbnail'].split('/')[-1] }}"
+        data-setup='{}'>
+      <source src="/static/videos/{{ vid['name'].split('/')[-1] }}" type="video/mp4"></source>
+    </video>
+
+    <script>
+    var player = videojs('my-video', {
+      plugins: {
+        seekButtons: {
+          forward: 5,
+          back: 5
+        }
+      }
+    });
+    </script>
+    -->
+
+    <div class="card text-center mt-3 mb-3"> <!--  style="width: 18rem;"> -->
+      <div class="card-body">
+        <h5 class="card-title">{{ vid['d_name'] }}</h5>
+        <p class="card-text">{{ vid['d_info'] }}</p>
+        <a href="/static/videos/{{ vid['name'].split('/')[-1] }}" class="btn btn-primary">Download</a>
+        <br>
+        <br>
+        <!-- <a href="/set_seen/{{ vid['name'].split('/')[-1] }}" class="btn btn-success">Saw</a> -->
+        <!-- <a href="/set_unseen/{{ vid['name'].split('/')[-1] }}" class="btn btn-danger">Didnt Saw</a> -->
+        <script>
+        function saw() {
+          fetch("/set_seen/{{ vid['name'].split('/')[-1] }}")
+        }
+        function didntsaw() {
+          fetch("/set_unseen/{{ vid['name'].split('/')[-1] }}")
+        }
+
+        </script>
+        <a onclick='saw()' class="btn btn-success">Saw</a>
+        <a onclick='didntsaw()' class="btn btn-danger">Didnt Saw</a>
+
+      </div>
+    </div>
+
+
+
+
+
+    {% endfor %} 
+{% endblock %}

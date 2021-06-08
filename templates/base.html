@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <style>
+    .text-logo {
+	background: linear-gradient(to right, #4B8BBE 30%, #FFD43B 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+        font-family: 'Poppins', sans-serif;
+    }
+    </style>
+    <link rel="stylesheet" href="/static/bootstrap-4.6.0-dist/css/bootstrap.min.css" crossorigin="anonymous">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
+	  <a class="navbar-brand text-logo" href="/videos/">PyTheater</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	  </button>
+
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav mr-auto">
+		  <li class="nav-item active">
+			<a class="nav-link" href="/videos/bytime">By time <span class="sr-only">(current)</span></a>
+		  </li>
+		  
+		  <li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				  Sample
+				</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				  <a class="dropdown-item" href="/videos/search/Videos1/0/">Videos1</a>
+				  <a class="dropdown-item" href="/videos/search/Videos2/0/">Videos2</a>
+				  <a class="dropdown-item" href="/videos/search/Videos3/0/">Videos3</a>
+				  <a class="dropdown-item" href="/videos/search/Videos4/0/">Videos4</a>
+				  <a class="dropdown-item" href="/videos/search/Videos5/0/">Videos5</a>
+				</div>
+		  </li>
+
+
+		</ul>
+		<form class="form-inline my-2 my-lg-0" method='POST' action='/videos/search/'>
+		  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="url">
+		  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+		</form>
+	  </div>
+	</nav>
+
+
+  </head>
+  <body>
+	<div class="container">
+      {% block container %}{% endblock %}
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="/static/jquery/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+    <script src="/static/bootstrap-4.6.0-dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
+
+
+  </body>
+</html>
