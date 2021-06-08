@@ -25,3 +25,6 @@ python3 PyTheater.py
 python db_gen.py
 python PyTheater.py
 ```
+
+Then open http://127.0.0.1:9995/videos in your browser!
+## Dont forget to refresh videos by clicking Refresh button!
