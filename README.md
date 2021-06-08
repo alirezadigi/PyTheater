@@ -27,4 +27,8 @@ python PyTheater.py
 ```
 
 Then open http://127.0.0.1:9995/videos in your browser!
-## Dont forget to refresh videos by clicking Refresh button!
+### Dont forget to refresh videos by clicking Refresh button!
+### Remember These Tips:
+- Videos must be near eachother (not in folders) and right below the videos folder
+- videos covers will be generated with the same names , so dont delete them
+- only english names are accepted
